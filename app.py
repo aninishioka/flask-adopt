@@ -8,12 +8,12 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, Pet, db
 from forms import AddPetForm, EditPetForm
 
-from dotenv import loadenv
+from dotenv import load_dotenv
 
-env = loadenv()
+env = load_dotenv()
 
-API_KEY = os.env['API_KEY']
-API_SECRET = os.env['API_SECRET']
+PETFINDER_API_KEY = os.environ['PETFINDER_API_KEY']
+PETFINDER_SECRET_KEY = os.environ['PETFINDER_SECRET_KEY']
 
 app = Flask(__name__)
 
