@@ -8,6 +8,13 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, Pet, db
 from forms import AddPetForm, EditPetForm
 
+from dotenv import loadenv
+
+env = loadenv()
+
+API_KEY = os.env['API_KEY']
+API_SECRET = os.env['API_SECRET']
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "secret"
@@ -16,7 +23,6 @@ app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     "DATABASE_URL", "postgresql:///adopt")
-
 
 connect_db(app)
 
