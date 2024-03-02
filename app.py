@@ -36,13 +36,14 @@ toolbar = DebugToolbarExtension(app)
 
 @app.get('/')
 def show_homepage():
+    """Renders root route"""
     pets = Pet.query.all()
     return render_template('home.html', pets=pets)
 
 
 @app.route("/add", methods=["POST", "GET"])
 def add_pet():
-
+    """Renders Pet add form. Handles submission"""
     form = AddPetForm()
 
     if form.validate_on_submit():
@@ -66,7 +67,7 @@ def add_pet():
 
 @app.route('/<int:pet_id>', methods=['POST', 'GET'])
 def edit_pet(pet_id):
-
+    """Renders pet edit form, handles submission and changes to db"""
     pet = Pet.query.get_or_404(pet_id)
 
     form = EditPetForm(obj=pet)
@@ -85,4 +86,3 @@ def edit_pet(pet_id):
 
     else:
         return render_template('edit_pet_form.html', form=form, pet=pet)
-
