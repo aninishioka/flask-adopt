@@ -7,12 +7,18 @@ Pets
 {% block content %}
 
 {% for pet in pets %}
+
 <div>
   <img src="{{pet.photo_url}}" alt="photo of {{pet.name}}">
   <a href="/{{pet.id}}">{{pet.name}}</a> is {% if pet.available %} available {% else %} unavailable {% endif %}!
 </div>
 
 {% endfor %}
+
+<div>
+  <img src="{{random_pet.photo_url}}" alt="photo of {{pet.name}}">
+  {{random_pet.name}}. Age: {{random_pet.age}}
+</div>
 
 <a href="/add"><button>Add a Pet</button></a>
 

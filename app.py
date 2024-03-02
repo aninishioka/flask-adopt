@@ -7,13 +7,7 @@ from flask_debugtoolbar import DebugToolbarExtension
 
 from models import connect_db, Pet, db
 from forms import AddPetForm, EditPetForm
-
-from dotenv import load_dotenv
-
-env = load_dotenv()
-
-PETFINDER_API_KEY = os.environ['PETFINDER_API_KEY']
-PETFINDER_SECRET_KEY = os.environ['PETFINDER_SECRET_KEY']
+from pet_finder import token, get_pet
 
 app = Flask(__name__)
 
@@ -38,7 +32,8 @@ toolbar = DebugToolbarExtension(app)
 def show_homepage():
     """Renders root route"""
     pets = Pet.query.all()
-    return render_template('home.html', pets=pets)
+    random_pet = get_pet(token)
+    return render_template('home.html', pets=pets, random_pet = random_pet)
 
 
 @app.route("/add", methods=["POST", "GET"])
