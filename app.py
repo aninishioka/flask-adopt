@@ -8,6 +8,13 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, Pet, db
 from forms import AddPetForm, EditPetForm
 
+from dotenv import load_dotenv
+
+env = load_dotenv()
+
+PETFINDER_API_KEY = os.environ['PETFINDER_API_KEY']
+PETFINDER_SECRET_KEY = os.environ['PETFINDER_SECRET_KEY']
+
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "secret"
